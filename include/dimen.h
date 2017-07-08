@@ -1,0 +1,37 @@
+#ifndef _DIMEN_H_
+#define _DIMEN_H_
+
+#define CHAR_WIDTH		24
+#define CHAR_HEIGHT		48
+
+
+#define MENU_ITEM_WIDTH		120
+#define MENU_ITEM_HEIGHT	60
+
+#define WINDOW_TITLE_HEIGHT	60
+
+#define STATUSBAR_HEIGHT	60
+#define STATUSBAR_ITEM_HEIGHT	50
+#define STATUSBAR_ITEM_WIDTH	150
+
+#define MESSAGEBOX_HEIGHT	60
+
+
+#define SEEKBAR_HEIGHT		20
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#endif
