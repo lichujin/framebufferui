@@ -82,6 +82,8 @@ int Window::OnFocus(){
 	int i;
 	for(i=0;i<menu.size();i++)
 		menu[i].OnFocus();
+	for(i=0;i<child.size();i++)
+		child[i]->OnFocus();
 	return 0;
 }
 int Window::OnLostFocus(){

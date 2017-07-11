@@ -37,6 +37,7 @@ class screen{
 	static int draw_linel(int x1,int y1,int len,unsigned int color);
 	static int draw_rect(int x1,int y1,int x2,int y2,unsigned int color);
 	static int fill_rect(int x1,int y1,int x2,int y2,unsigned int color);
+	static int draw_circle(int x1,int y1,int r,unsigned color);
 
 	static int draw_char(int x1,int y1,const unsigned char a,unsigned int color);
 	static int draw_string(int x1,int y1,string s,unsigned int color);

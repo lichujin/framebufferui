@@ -19,8 +19,7 @@
 
 #define SEEKBAR_HEIGHT		20
 
-
-
+#define SPINNER_ITEM_HEIGHT	60
 
 
 

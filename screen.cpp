@@ -14,6 +14,7 @@
 #include <linux/fb.h>
 #include <sys/ioctl.h>
 #include <string.h>
+#include <math.h>
 
 
 #include <iostream>
@@ -152,6 +153,19 @@ int screen::fill_rect(int x1,int y1,int x2,int y2,unsigned int color)
 		draw_pixel(i,j,color);
 
 	return ret;
+}
+int screen::draw_circle(int x1,int y1,int r,unsigned int color)
+{
+	double angle = 0;
+	int xpos,ypos;
+
+	for(angle = 0;angle<=6.28;angle+=3.14/180)
+	{
+		xpos = x1 + (int)cos(angle)*r;
+		ypos = y1 - (int)sin(angle)*r;
+		draw_pixel(xpos,ypos,color);
+	}
+	return 0;
 }
 int screen::draw_char(int x1,int y1,const unsigned char a,unsigned int color){
 	int ret = 0;

@@ -29,8 +29,10 @@ int SeekBar::OnDraw(){
 
 	if(progress*per <=10){
 		screen::fill_rect(x1,y,x1+20,y+SEEKBAR_HEIGHT,SEEKBAR_FORE_COLOR);
+	}else if(screen::x >=(x2-20)){
+		screen::fill_rect(x2-20,y,x2,y+SEEKBAR_HEIGHT,SEEKBAR_FORE_COLOR);
 	}else{
-		screen::fill_rect(x1+progress*per,y,x1+progress*per+20,y+SEEKBAR_HEIGHT,SEEKBAR_FORE_COLOR);
+		screen::fill_rect(x1+progress*per-10,y,x1+progress*per+10,y+SEEKBAR_HEIGHT,SEEKBAR_FORE_COLOR);
 	}
 	return 0;
 }

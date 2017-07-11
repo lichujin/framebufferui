@@ -1,15 +1,57 @@
-   
 
-#SRC = StatusBar.cpp Mouse.cpp screen.cpp view.cpp Button.cpp MenuItem.cpp Menu.cpp Window.cpp main.cpp
-#TAR = main
-#$(TAR):$(SRC)
-#	g++ $(SRC) -o $(TAR) -lpthread
+CC = g++
+TAR = main
 
-main:SeekBar.o TextView.o EditView.o Button.o Menu.o MenuItem.o screen.o StatusBar.o view.o Window.o Termios.o Mouse.o MessageBox.o main.o
-	g++ -o $@ $^ -lpthread
+LIBS += Spinner.o
+LIBS += SeekBar.o
+LIBS += TextView.o
+LIBS += EditView.o
+LIBS += Button.o
+LIBS += Menu.o
+LIBS += MenuItem.o
+LIBS += screen.o
+LIBS += StatusBar.o
+LIBS += view.o
+LIBS += Window.o
+LIBS += Termios.o
+LIBS += Mouse.o
+LIBS += MessageBox.o
+LIBS += main.o
 
-.c.o:
-	g++ -c $<
+
+$(TAR):$(LIBS)
+	$(CC) -o $@ $^ -lpthread -lm
+
+Spinner.o:Spinner.cpp
+	$(CC) -c $^
+SeekBar.o:SeekBar.cpp
+	$(CC) -c $^
+TextView.o:TextView.cpp
+	$(CC) -c $^
+EditView.o:EditView.cpp
+	$(CC) -c $^
+Button.o:Button.cpp
+	$(CC) -c $^
+Menu.o:Menu.cpp
+	$(CC) -c $^
+MenuItem.o:MenuItem.cpp
+	$(CC) -c $^
+screen.o:screen.cpp
+	$(CC) -c $^
+StatusBar.o:StatusBar.cpp
+	$(CC) -c $^
+view.o:view.cpp
+	$(CC) -c $^
+Window.o:Window.cpp
+	$(CC) -c $^
+Termios.o:Termios.cpp
+	$(CC) -c $^
+Mouse.o:Mouse.cpp
+	$(CC) -c $^
+MessageBox.o:MessageBox.cpp
+	$(CC) -c $^
+main.o:main.cpp
+	$(CC) -c $^
 
 clean:
 	rm *.o -rf
