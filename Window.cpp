@@ -80,13 +80,20 @@ int Window::OnClick(){
 int Window::OnKeyPress(int value){return 0;}
 int Window::OnFocus(){
 	int i;
-	for(i=0;i<menu.size();i++)
-		menu[i].OnFocus();
-	for(i=0;i<child.size();i++)
-		child[i]->OnFocus();
+	if(screen::posinrect(x1,y1,x2,y2)){
+		for(i=0;i<menu.size();i++)
+			menu[i].OnFocus();
+		for(i=0;i<child.size();i++)
+			child[i]->OnFocus();
+	}else
+		OnLostFocus();
 	return 0;
 }
 int Window::OnLostFocus(){
+	int i;
+
+	for(i=0;i<child.size();i++)
+		child[i]->OnFocus();
 	return 0;
 }
 int Window::AddMenu(Menu m){

@@ -87,14 +87,17 @@ int EditView::OnKeyPress(int value)
 int EditView::OnFocus(){
 	int ret;
 	
-	screen::focus_view = this;
-	if(cursor == 0){
-		ret = pthread_create(&cursor,NULL,funcursor,(void *)this);
-		if(ret){
-			MessageBox::show("Error","Init EditView cursor thread failed",5);
-			return -1;
+	if(screen::posinrect(x1,y1,x2,y2)){	
+		screen::focus_view = this;
+		if(cursor == 0){
+			ret = pthread_create(&cursor,NULL,funcursor,(void *)this);
+			if(ret){
+				MessageBox::show("Error","Init EditView cursor thread failed",5);
+				return -1;
+			}
 		}
-	}
+	}else
+		OnLostFocus();	
 	return 0;	
 }
 int EditView::OnLostFocus()
