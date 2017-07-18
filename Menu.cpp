@@ -3,7 +3,7 @@
 #include "include/config.h"
 
 
-Menu::Menu(int a,int b,string t,int ty){
+Menu::Menu(int a,int b,string t,int ty):view(x,y,x,y){
 	x = a;
 	y = b;
 	text = t;

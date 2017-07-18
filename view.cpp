@@ -5,6 +5,7 @@ view::view(int v1,int v2,int v3,int v4)
 {
 	x1=v1;y1=v2;x2=v3;y2=v4;
 	func = NULL;
+	parent = NULL;
 }
 
 string view::GetText(){return text;}

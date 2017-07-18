@@ -11,6 +11,7 @@ class view{
 	public:
 	string text;
 	int x1,y1,x2,y2;
+	view* parent;
 
 	void *data;
 	int (*func)(void *p);

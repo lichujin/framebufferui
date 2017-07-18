@@ -53,12 +53,11 @@ int screen::init()
 		return -2;
 	}
 
-	screen::xres = vinfo.xres;
 	screen::yres = vinfo.yres;
-	screen::xres_virtual = vinfo.xres_virtual;
 	screen::yres_virtual = vinfo.yres_virtual;
+	screen::xres = vinfo.xres;
+	screen::xres_virtual = vinfo.xres_virtual;
 	mem = (unsigned int *)mmap(NULL,xres*yres*4,PROT_READ|PROT_WRITE,MAP_SHARED,fd,0);
-
 
 
 	#ifdef INPUT_MOUSE

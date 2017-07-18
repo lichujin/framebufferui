@@ -22,6 +22,7 @@ void Spinner::SetFunc(int (*click)(void *),void *t){
 int Spinner::OnDraw(){
 	
 	screen::draw_rect(x1,y1,x2,y2,BORDER_COLOR);
+	screen::fill_rect(x1+1,y1+1,x2-1,y2-1,COLOR_WHITE);
 	screen::fill_rect((x2-30),y1,x2,y2,SPINNER_BACK_COLOR);
 	if(text.length()!=0)
 		screen::draw_string(x1,y1,text,COLOR_TEXT);
@@ -41,18 +42,30 @@ int Spinner::OnClick(){
 			}
 			
 		}else{
+			if(!back.empty()){
+				for(i=y2;i<y2+item.size()*SPINNER_ITEM_HEIGHT;i++)
+				for(j=x1;j<x2;j++)
+					*(screen::mem+i*screen::xres+j) = back[k++];
+				pos = -1;
+				back.clear();
+			}
+		}
+	}else if(!back.empty()&&screen::posinrect(x1,y2,x2,y2+item.size()*SPINNER_ITEM_HEIGHT)){
+		i = (screen::y-y2)/SPINNER_ITEM_HEIGHT;
+		text = item[i];
+		OnDraw();
+		if(func != NULL)
+			func(this);
+	}else{
+		if(!back.empty()){
 			for(i=y2;i<y2+item.size()*SPINNER_ITEM_HEIGHT;i++)
 			for(j=x1;j<x2;j++)
 				*(screen::mem+i*screen::xres+j) = back[k++];
 			pos = -1;
 			back.clear();
 		}
-	}else if(!back.empty()&&screen::posinrect(x1,y2,x2,y2+item.size()*SPINNER_ITEM_HEIGHT)){
-		i = (screen::y-y2)/SPINNER_ITEM_HEIGHT;
-		text = item[i];
-		if(func != NULL)
-			func(this);
-	}else
+
+	}
 		return 0;
 }
 int Spinner::OnKeyPress(int value){
@@ -60,17 +73,16 @@ int Spinner::OnKeyPress(int value){
 }
 int Spinner::OnFocus(){
 	if(!back.empty()&&screen::posinrect(x1,y2,x2,y2+item.size()*SPINNER_ITEM_HEIGHT)){
-	printf("111111111111111\n");
 		if(pos>=0)
 			OnLostFocus();
 		pos = (screen::y-y2)/SPINNER_ITEM_HEIGHT;
-		screen::fill_rect(x1,y2+pos*SPINNER_ITEM_HEIGHT,x2,(pos+1)*SPINNER_ITEM_HEIGHT,SPINNER_ITEM_SEL_COLOR);
+		screen::fill_rect(x1,y2+pos*SPINNER_ITEM_HEIGHT,x2,y2+(pos+1)*SPINNER_ITEM_HEIGHT,SPINNER_ITEM_SEL_COLOR);
 		screen::draw_string(x1,y2+pos*SPINNER_ITEM_HEIGHT,item[pos],COLOR_TEXT);
 	}
 	return 0;
 }
 int Spinner::OnLostFocus(){
-	screen::fill_rect(x1,y2+pos*SPINNER_ITEM_HEIGHT,x2,(pos+1)*SPINNER_ITEM_HEIGHT,SPINNER_ITEM_NOSEL_COLOR);
+	screen::fill_rect(x1,y2+pos*SPINNER_ITEM_HEIGHT,x2,y2+(pos+1)*SPINNER_ITEM_HEIGHT,SPINNER_ITEM_NOSEL_COLOR);
 	screen::draw_string(x1,y2+pos*SPINNER_ITEM_HEIGHT,item[pos],COLOR_TEXT);
 	return 0;
 }

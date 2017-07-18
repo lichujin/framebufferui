@@ -1,11 +1,12 @@
 #ifndef _MENU_H_
 #define _MENU_H_
 #include "MenuItem.h"
+#include "view.h"
 #include <vector>
 
 
 using namespace std;
-class Menu{
+class Menu:public view{
 	public:
 	int x;
 	int y;

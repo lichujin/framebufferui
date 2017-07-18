@@ -94,7 +94,10 @@ int Window::AddMenu(Menu m){
 	return 0;
 }
 int Window::AddChild(view *v){
-	child.push_back(v);
+	if(NULL == v->parent){
+		child.push_back(v);
+		v->parent = this;
+	}
 	return 0;
 }
 int Window::Show(){
