@@ -1,0 +1,65 @@
+#
+# For a description of the syntax of this configuration file,
+# see scripts/kbuild/config-language.txt.
+#
+
+mainmenu "Linux FrameBuffer UI Library Configuration"
+
+
+config DISPLAY_DEVICE
+	string "Set display device file path"
+	default "/dev/fb0"
+	help
+	  This option set for display device path.
+
+menu "Mouse function setting"
+config INPUT_MOUSE
+	bool "Enable options for mouse function"
+	default y
+	help
+	  This option set for mouse function on or off.
+
+config MOUSE_DEVICE
+	string "Set mouse device file path"
+	default "/dev/input/event8"
+	depends on INPUT_MOUSE
+	help
+	  This option set for mouse device path.
+endmenu
+
+config TERMIOS
+	bool "Enable options for keyboard input function"
+	default y
+	help
+	  Enable options and features which are not essential.
+	  Select this if you plan to use input function.
+
+menu "FreeType Settings"
+config FREETYPE
+	bool "Enable options for freetype display character"
+	default n
+	help
+	  This option makes for freetype lib.
+
+
+config CHARACTER_PATH
+	string "Fonts character file with full path"
+	default "my.ttf"
+	depends on FREETYPE
+	help
+	  This option makes for freetype fonts character file.
+
+endmenu
+
+config PNG
+	bool "Enable options for PNG library"
+	default n
+	help
+	  This option will enable the png library function.
+
+config JPEG
+	bool "Enable options for JPEG library"
+	default n
+	help
+	  This option will enable the jpeg library function.
+
