@@ -37,7 +37,7 @@ int screen::fd;
 vector<Window *> screen::child;
 StatusBar screen::statusbar;
 int screen::activewin = 0xFF;
-view * screen::focus_view;
+view * screen::focus_view = NULL;
 #ifdef CONFIG_FREETYPE
 FT_Library screen::ftLibrary;
 FT_Face screen::ftFace;
@@ -628,7 +628,8 @@ int screen::sendmessage(int type,int value){
 		}
 		case EVENT_KEY_PRESS:
 		{
-			focus_view->OnKeyPress(value);
+			if (focus_view != NULL)
+				focus_view->OnKeyPress(value);
 			break;
 		}
 		default:

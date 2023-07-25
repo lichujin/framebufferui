@@ -1,4 +1,3 @@
-CC = g++
 UI = libframebuffer.a
 
 LIBS += Spinner.o
