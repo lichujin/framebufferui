@@ -54,26 +54,14 @@ int Window::OnClick(){
 		Hide();
 		screen::activewin = 0xFF;
 		screen::del(this);
-		#ifdef CONFIG_INPUT_MOUSE
-			Mouse::MouseShow();
-		#endif
 	}
 	else if(screen::posinrect(x2-55,y1,x2-45,y1+WINDOW_TITLE_HEIGHT))
 	{
 		Hide();
 		screen::activewin = 0xFF;
-		#ifdef CONFIG_INPUT_MOUSE
-			Mouse::MouseShow();
-		#endif
 	}else{
-		#ifdef CONFIG_INPUT_MOUSE
-			Mouse::MouseHide();
-		#endif
 		for(i=0;i<child.size();i++)
 			child[i]->OnClick();
-		#ifdef CONFIG_INPUT_MOUSE
-			Mouse::MouseShow();
-		#endif
 	}
 	return 0;
 }

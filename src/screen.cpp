@@ -18,7 +18,7 @@
 #include <math.h>
 #include <setjmp.h>
 #include <termios.h>
-
+#include <errno.h>
 
 #include <iostream>
 #include <vector>
@@ -71,7 +71,7 @@ int screen::init()
 	fd = open(CONFIG_DISPLAY_DEVICE,O_RDWR);
 	if(screen::fd < 0)
 	{
-		printf("Open %s failed\n",CONFIG_DISPLAY_DEVICE);
+		printf("Open %s failed err:%s\n",CONFIG_DISPLAY_DEVICE, strerror(errno));
 		return -1;
 	}
 	if (ioctl(fd,FBIOGET_FSCREENINFO,&finfo)){

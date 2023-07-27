@@ -28,7 +28,9 @@ static void *func(void *p){
 		if ((s >= 32) && (s <= 127)) { // ASCII 打印字符
 			screen::sendmessage(EVENT_KEY_PRESS,s);
 		} else if (s == 27) { // 上下左右控制键
+#ifdef CONFIG_INPUT_MOUSE
 			Mouse::MouseHide();
+#endif
 			s1 = getchar();
 			s2 = getchar();
 			if (s2 == 65) { // up
@@ -51,11 +53,20 @@ static void *func(void *p){
 
 			}
 			screen::sendmessage(EVENT_MOUSE_MOVE);
+#ifdef CONFIG_INPUT_MOUSE
 			Mouse::MouseShow();
+#endif
 		} else if (s == 13) {
+#ifdef CONFIG_INPUT_MOUSE
+			Mouse::MouseHide();
+#endif
 			screen::sendmessage(EVENT_LEFT_CLICK);
+#ifdef CONFIG_INPUT_MOUSE
+			Mouse::MouseShow();
+#endif
 		} else {
 			printf("I don't know what happening!\n");
+			screen::sendmessage(EVENT_RIGHT_CLICK);
 		}
 	}
 
